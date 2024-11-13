@@ -1,0 +1,11 @@
+services:
+    _defaults:
+        autowire: true
+        autoconfigure: true
+        public: true  # Make all services public in the test environment
+
+    # Specifically make the StockQuoteService public for testing
+    App\Service\StockQuoteService:
+        public: true
+    Symfony\Component\Mailer\MailerInterface:
+        public: true

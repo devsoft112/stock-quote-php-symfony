@@ -1,0 +1,64 @@
+nelmio_api_doc:
+    documentation:
+        info:
+            title: 'Stock Quote API'
+            description: 'API for fetching historical stock quotes and sending them via email.'
+            version: '1.0.0'
+        paths:
+            /api/stock-quotes:
+                post:
+                    tags: ['Stock Quotes']
+                    summary: 'Get historical stock quotes and send via email.'
+                    requestBody:
+                        content:
+                            application/x-www-form-urlencoded:
+                                schema:
+                                    type: object
+                                    properties:
+                                        companySymbol:
+                                            type: string
+                                            example: 'AAPL'
+                                        startDate:
+                                            type: string
+                                            format: date
+                                            example: '2023-01-01'
+                                        endDate:
+                                            type: string
+                                            format: date
+                                            example: '2023-01-31'
+                                        email:
+                                            type: string
+                                            format: email
+                                            example: 'example@example.com'
+                    responses:
+                        '200':
+                            description: 'Email sent successfully!'
+                            content:
+                                application/json:
+                                    schema:
+                                        type: object
+                                        properties:
+                                            message:
+                                                type: string
+                                                example: 'Email sent successfully!'
+                        '400':
+                            description: 'Validation errors'
+                            content:
+                                application/json:
+                                    schema:
+                                        type: object
+                                        properties:
+                                            errors:
+                                                type: array
+                                                items:
+                                                    type: string
+                        '500':
+                            description: 'Internal server error'
+                            content:
+                                application/json:
+                                    schema:
+                                        type: object
+                                        properties:
+                                            error:
+                                                type: string
+                                                example: 'Failed to fetch historical data'
