@@ -1,6 +1,6 @@
-# Stock Quote API
+# XM-Stock Quote
 
-This project is a PHP application built with Symfony 6.1.12 that provides an endpoint to receive stock quotes for a given company symbol within a specified date range, and sends the historical data as a CSV attachment to the provided email.
+This project provides an endpoint to receive stock quotes for a given company symbol within a specified date range, and sends the historical data as a CSV attachment to the provided email.
 
 ## Features
 
@@ -10,17 +10,6 @@ This project is a PHP application built with Symfony 6.1.12 that provides an end
 - Comprehensive test coverage
 - OpenAPI documentation
 - Docker support for easy setup and deployment
-
-## Table of Contents
-
-- [Prerequisites](#prerequisites)
-- [Installation](#installation)
-- [Configuration](#configuration)
-- [Running the Application](#running-the-application)
-- [Testing](#testing)
-- [API Documentation](#api-documentation)
-- [Docker](#docker)
-- [License](#license)
 
 ## Prerequisites
 
@@ -34,7 +23,7 @@ This project is a PHP application built with Symfony 6.1.12 that provides an end
 1. Clone the repository:
 
    ```sh
-   git clone <repository url>
+   git clone https://github.com/deliteser112/stock-quote-php-symfony.git
    cd Stock-Quote-App
    ```
 
@@ -52,17 +41,11 @@ This project is a PHP application built with Symfony 6.1.12 that provides an end
 
 3. Set up environment variables:
 
-   Copy `.env` to `.env.local` and configure the necessary variables, including your RapidAPI key:
-
    ```dotenv
-   APP_ENV=dev
-   APP_SECRET=9b76bc4c9e40f165a2b731c325c8793d
-
-   DATABASE_URL=pgsql://postgres:password@db:5432/app
-
-   MESSENGER_TRANSPORT_DSN=doctrine://default?auto_setup=0
-   MAILER_DSN=smtp://api:95ac6de7b68bf6a0412d99650805bb34@live.smtp.mailtrap.io:587
-   RAPIDAPI_KEY=c29c584041msh773438672c09cc8p1cfb0fjsn092c60152115
+   DATABASE_URL=pgsql://postgres:postgres@localhost:5432/stocks
+   MAILER_DSN=smtp://3906f354976114:2f5edb86adad7b@sandbox.smtp.mailtrap.io:2525
+   RAPIDAPI_KEY=7dcca4844emsh2f9244cca3fe0fdp1c26b8jsnc82d7a417bae
+   RAPIDAPI_URL=https://yh-finance.p.rapidapi.com/stock/v3/get-historical-data
    ```
 
 4. Initialize the Database:
@@ -83,16 +66,14 @@ This project is a PHP application built with Symfony 6.1.12 that provides an end
 5. Access the Application:
 
    - Symfony application: http://127.0.0.1:8000
-   - pgAdmin: http://127.0.0.1:5432 (Login with admin@admin.com and admin)
 
 ## Configuration
 
 Ensure the following environment variables are set in your `.env.local`:
 
-- `APP_ENV`: The environment in which the application runs (e.g., `dev` or `prod`)
-- `APP_SECRET`: A secret key used by Symfony
 - `MAILER_DSN`: The DSN for the mailer service
 - `RAPIDAPI_KEY`: Your RapidAPI key for accessing the Yahoo Finance API
+- `RAPIDAPI_URL`: Your RapidAPI url for accessing the Yahoo Finance API
 
 ## Running the Application
 
@@ -116,7 +97,3 @@ The API is documented using OpenAPI. To view the documentation:
 
 - Start the application.
 - Navigate to http://127.0.0.1:8000/api/doc.
-
-## License
-
-This project is licensed under the MIT License.
